@@ -1,0 +1,209 @@
+
+EXPLORATORY DATA ANALYSIS SUMMARY
+
+Dataset: UCI SMS Spam Collection
+
+1. Dataset Information
+Total messages: 5,574
+Ham messages: 4,827
+Spam messages: 747
+Number of columns: 2
+
+2. Dataset Quality
+Missing values: 0
+Duplicate records: 403
+
+3. Class Distribution
+Ham: 86.60%
+Spam: 13.40%
+
+4. Average Message Length
+Ham:
+Average characters: 71.47
+Average words: 14.30
+
+Spam:
+Average characters: 138.68
+Average words: 23.91
+
+5. Important Observations
+- Spam messages are longer on average than ham messages.
+- Ham messages show greater variation in message length.
+- The dataset has an imbalanced class distribution.
+- Some unusually long ham messages are present.
+- Message length alone may not be sufficient for reliable classification.
+
+6. Generated Visualizations
+- average_message_length.png
+- average_word_count.png
+- message_length_distribution.png
+- message_length_boxplot.png
+
+7. Text Preprocessing Observations
+
+- Messages were converted to lowercase.
+- Extra whitespace was normalized.
+- Punctuation was retained because it may provide useful classification signals.
+- 138 messages contained URL-related patterns.
+- 1,464 messages contained numerical characters.
+- 94.78% of spam messages contained numbers.
+- 15.66% of ham messages contained numbers.
+- Numbers and URLs were retained for further model evaluation.
+
+8. Word Frequency Analysis
+
+Ham messages:
+- Frequently occurring words include i, you, to, the, u, my, and me.
+- Conversational words appear frequently.
+
+Spam messages:
+- Frequently occurring words include to, call, your, free, txt, ur, and mobile.
+- Promotional and communication-related words appear frequently.
+
+Observation:
+- Ham messages show more conversational language.
+- Spam messages contain several promotional and marketing-related terms.
+- Word frequency may provide useful features for text classification.
+
+9. Baseline Model – Multinomial Naive Bayes
+
+Feature Extraction: TF-IDF
+Maximum Features: 5000
+N-gram Range: (1, 2)
+Training Samples: 4459
+Testing Samples: 1115
+
+Evaluation Results:
+Accuracy: 97.67%
+Spam Precision: 99.20%
+Spam Recall: 83.22%
+Spam F1-Score: 90.51%
+
+Observation:
+- The model achieved high overall accuracy.
+- Spam precision was particularly high.
+- Spam recall was lower than precision.
+- Some actual spam messages were incorrectly classified as ham.
+
+10. Confusion Matrix – Multinomial Naive Bayes
+
+                 Predicted
+                 Ham    Spam
+Actual Ham       965      1
+Actual Spam       25    124
+
+Observations:
+- 965 ham messages were correctly classified.
+- 124 spam messages were correctly classified.
+- 1 ham message was incorrectly classified as spam.
+- 25 spam messages were incorrectly classified as ham.
+- The model showed high precision but missed some spam messages.
+
+11. Duplicate Record Analysis
+
+Original Dataset: 5,574 records
+Duplicate Records: 403
+Unique Message-Label Pairs: 5,171
+
+Cleaned Dataset:
+Total Records: 5,171
+Ham Messages: 4,518
+Spam Messages: 653
+Conflicting Labels: 0
+
+Observation:
+- 403 duplicate records were identified.
+- All duplicate records had identical message-label pairs.
+- No conflicting labels were found.
+- A duplicate-free dataset was created for leakage-aware evaluation.
+- The original dataset was preserved.
+
+12. Leakage-Aware Naive Bayes Evaluation
+
+Dataset: Duplicate-free SMS Spam Collection
+Total Records: 5,171
+Training Samples: 4,136
+Testing Samples: 1,035
+Overlapping Messages: 0
+
+Model: Multinomial Naive Bayes
+Feature Extraction: TF-IDF
+Maximum Features: 5,000
+N-gram Range: (1, 2)
+
+Evaluation Results:
+Accuracy: 96.81%
+Spam Precision: 100.00%
+Spam Recall: 74.81%
+Spam F1-Score: 85.59%
+
+Confusion Matrix:
+[[904, 0],
+ [33, 98]]
+
+Observation:
+- No duplicate messages occurred across training and testing sets.
+- The model correctly identified 98 spam messages.
+- It missed 33 spam messages.
+- Spam precision was 100%, but recall was lower.
+
+13. Logistic Regression Confusion Matrix
+
+                 Predicted
+                 Ham    Spam
+Actual Ham       903      1
+Actual Spam       33     98
+
+Observations:
+- 903 ham messages were correctly classified.
+- 98 spam messages were correctly classified.
+- 1 ham message was incorrectly classified as spam.
+- 33 spam messages were incorrectly classified as ham.
+
+14. Logistic Regression Evaluation
+
+Dataset: Duplicate-free SMS Spam Collection
+Feature Extraction: TF-IDF
+Maximum Features: 5,000
+N-gram Range: (1, 2)
+
+Evaluation Results:
+Accuracy: 96.71%
+Spam Precision: 98.99%
+Spam Recall: 74.81%
+Spam F1-Score: 85.22%
+
+Confusion Matrix:
+[[903, 1],
+ [33, 98]]
+
+Observation:
+- The model achieved 96.71% accuracy.
+- Spam precision was 98.99%.
+- Spam recall was 74.81%.
+- The model correctly detected 98 spam messages.
+- It missed 33 spam messages.
+
+15. Linear SVM Evaluation
+
+Dataset: Duplicate-free SMS Spam Collection
+Feature Extraction: TF-IDF
+Maximum Features: 5,000
+N-gram Range: (1, 2)
+
+Evaluation Results:
+Accuracy: 98.16%
+Spam Precision: 99.12%
+Spam Recall: 86.26%
+Spam F1-Score: 92.24%
+
+Confusion Matrix:
+[[903, 1],
+ [18, 113]]
+
+Observations:
+- Linear SVM achieved the highest accuracy.
+- It achieved the highest spam recall among the three models.
+- It correctly detected 113 spam messages.
+- It missed only 18 spam messages.
+- It achieved the highest F1-score.

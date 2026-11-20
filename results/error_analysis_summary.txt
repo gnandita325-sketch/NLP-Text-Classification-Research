@@ -1,0 +1,38 @@
+ERROR ANALYSIS - LINEAR SVM
+
+Dataset:
+Total cleaned records: 5171
+Training records: 4136
+Testing records: 1035
+
+Model: Linear SVM
+
+Test Accuracy: 98.16%
+Spam Precision: 99.12%
+Spam Recall: 86.26%
+Spam F1-Score: 92.24%
+
+Error Distribution:
+True Positives: 113
+True Negatives: 903
+False Positives: 1
+False Negatives: 18
+
+Observations:
+
+1. The model correctly classified most legitimate messages.
+
+2. Only one legitimate message was incorrectly classified as spam.
+
+3. Eighteen spam messages were incorrectly classified as legitimate.
+
+4. Some missed spam examples contained promotional language,
+   event announcements, ticket offers and short messages.
+
+5. The results indicate that high accuracy does not necessarily
+   mean all spam messages are detected.
+
+Limitation:
+
+The model may struggle with unfamiliar promotional expressions,
+short messages and variations in wording.

@@ -1,0 +1,47 @@
+DISCUSSION ON COMPARATIVE RESEARCH
+
+1.Comparison of model performance
+
+The experimental evaluation revealed that Linear Support Vector Machine (Linear SVM) performed the best overall among the three classifiers that were evaluated. The results of five-fold stratified cross-validation showed that Linear SVM achieved a mean accuracy of 98.69% and a macro F1-score of 96.95%.
+
+Multinomial Naive Bayes obtained a mean accuracy of 96.74% and macro F1-score of 91.60%, while Logistic Regression obtained 96.47% accuracy and macro F1-score of 90.84%.
+
+2.Results Interpretation
+
+The good performance of Linear SVM could be due to its margin based learning, which is effective for high dimensional text representations such as TF-IDF features.
+
+Multinomial Naive Bayes is a probabilistic text classification approach. Logistic Regression is a linear decision boundary learned through supervised optimization. The differences in performance seen may be attributed to their different learning assumptions.
+
+3. Cross-Validation Results
+
+The linear SVM produced an accuracy standard deviation around 0.23 percentage points for the five folds, suggesting the model’s performance was fairly stable across the training partitions tested.
+
+This provides further evidence for its performance beyond a single train-test split.
+
+4.Analysis of errors
+
+The linear SVM attained an accuracy of 98.16 % and spam F1-score of 92.24 % on the independent test set.
+
+The model was able to correctly classify 113 out of 131 spam messages while 18 spam messages were classified as legitimate. One legitimate message was falsely classified as spam.
+
+Among the misclassified examples were short messages, promotional messages and event announcements. These examples indicate possible problems with vocabulary diversity and scarce context information.
+
+5. Study Limitations
+
+The evaluation is performed on a single SMS spam dataset.
+
+The dataset is imbalanced with more legit messages than spam messages.
+
+Cross-validation was performed on the training subset.
+
+Final test evaluation is done on one held-out split.
+
+The computational times are measured over single runs and may vary.
+
+The study does not establish performance on unseen real-world data.
+
+Conclusion
+
+Among the three evaluated machine learning algorithms, Linear SVM demonstrated the strongest overall classification performance. Its high macro F1-score and relatively low cross-validation accuracy variation make it a promising approach for SMS spam classification.
+
+Further experiments using additional datasets and more extensive validation would help establish the generalizability of these findings.
